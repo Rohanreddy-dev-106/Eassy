@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import Layout from "express-ejs-layouts"
 import session from "express-session";
+import cookieParser from "cookie-parser";
 const server=express();
 
 //setup view engine settings
@@ -21,4 +22,5 @@ server.use(session({
     saveUninitialized:false,
     cookie:{secure:false}
 }))
+server.use(cookieParser())
 export {server}

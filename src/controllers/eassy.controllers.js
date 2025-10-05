@@ -31,7 +31,7 @@ export default class Eassycontroller {
         const fileurl = "data/" + req.file.filename; 
 
         const { id } = req.params; // ID from route parameter
-        const model_data = new Model();
+        const model_data = new Model();//default constructer
 
         // Update the job's Applications array
         model_data.updateApplication(user, id);

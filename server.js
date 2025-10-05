@@ -3,18 +3,18 @@ import controller from "./src/controllers/eassy.controllers.js";
 import controller2 from "./src/controllers/login.sinup.controller.js";
 import controller3 from "./src/controllers/postjob.controller.js";
 import { UplodeFile } from "./src/middlewares/file.uplode.config.js";
-
+import Name from "./src/middlewares/express.cookie.js";
 const PORT = 3100;
 
 // ----------------- JOB ROUTES -----------------
-server.get("/", controller.getHomepage);
-server.get("/jobs", controller.jobdetails);
-server.get("/job/:id", controller.jobview);
-server.post("/apply/:id", UplodeFile.single("resume"), controller.getapplyformdata);
-server.post("/search", controller.search_data);
+server.get("/", Name,controller.getHomepage);
+server.get("/jobs", Name,controller.jobdetails);
+server.get("/job/:id",Name, controller.jobview);
+server.post("/apply/:id",Name, UplodeFile.single("resume"), controller.getapplyformdata);
+server.post("/search",Name, controller.search_data);
 
 // Post Job page
-server.get("/postjob", (req, res, next) => {
+server.get("/postjob", Name,(req, res, next) => {
   // Only allow logged-in users
   if (!req.session.userId) {
     return res.redirect("/login");
@@ -25,7 +25,7 @@ server.get("/postjob", (req, res, next) => {
 // ----------------- AUTH ROUTES -----------------
 
 // Login page
-server.get("/login", (req, res) => {
+server.get("/login", Name,(req, res) => {
   // If user is already logged in, redirect to jobs page
   if (req.session.userId) {
     return res.redirect("/jobs");
@@ -34,7 +34,7 @@ server.get("/login", (req, res) => {
 });
 
 // Register page (if you have a separate one, else handled by POST)
-server.get("/register", (req, res) => {
+server.get("/register",(req, res) => {
   if (req.session.userId) {
     return res.redirect("/jobs");
   }
