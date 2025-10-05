@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import Layout from "express-ejs-layouts"
+import session from "express-session";
 const server=express();
 
 //setup view engine settings
@@ -11,4 +12,13 @@ server.set("views", path.join(path.resolve(), "src", "views"));
 server.use(express.urlencoded({extended:true}));
 server.use(Layout);
 server.use(express.static("public"));
+
+//Express middleware to  Make sessions
+server.use(session({
+    
+    secret:"mykey",
+    resave:false,
+    saveUninitialized:false,
+    cookie:{secure:false}
+}))
 export {server}

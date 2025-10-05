@@ -15,12 +15,6 @@ export default class Eassycontroller {
         res.render("list-all-jobs", { jobs: model_data.Getjobs() });
     }
 
-    // Renders job details (possibly duplicate of jobdetails?)
-    static joblist(req, res, next) {
-        const model_data = new Model();
-        res.render("job-details", { data: model_data.Getjobs() });
-    }
-
     // Renders a single job view using job ID from params
     static jobview(req, res, next) {
         const { id } = req.params; // middleware parses URL params
