@@ -62,6 +62,9 @@ export default class Model {
     const requrejob = jobs.filter((value) => value.job_designation && value.job_designation.toLowerCase().includes(job_designation.toLowerCase()));
     return requrejob
   }
+  static Adddata(new_data){
+    jobs.push(new_data);
+  }
 
 
 
