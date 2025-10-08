@@ -5,6 +5,8 @@ import controller3 from "./src/controllers/postjob.controller.js";
 import { UplodeFile } from "./src/middlewares/file.uplode.config.js";
 import Name from "./src/middlewares/express.cookie.js";
 import postjob from "./src/controllers/postjob.controller.js"
+import { Model } from "mongoose";
+import multer from "multer";
 const PORT = 3100;
 
 // ----------------- JOB ROUTES -----------------
@@ -52,6 +54,12 @@ server.post("/login", controller2.LoginYou);
 
 // Logout
 server.get("/logout", controller2.Logout);
+
+//update
+
+server.get("/job/update/:id",Name, UplodeFile.single("logo"),controller.UpdatePage)
+server.post("/job/update/:id",Name, UplodeFile.single("logo"),controller.updatedata_D)
+server.get("/job/delete/:id", controller.delite);
 
 // ----------------- START SERVER -----------------
 server.listen(PORT, () =>
